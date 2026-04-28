@@ -1,0 +1,24 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: new
+  namespace: argocd
+spec:
+  project: my-project
+  source:
+    repoURL: https://github.com/periabdraimova03/actions-cd-october-2025.git
+    targetRevision: HEAD
+    path: flask-app
+    helm:
+      values: |
+        deployment:
+          image: kaizenacademy/flask-app
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: new
+  syncPolicy:
+    syncOptions:
+      - CreateNamespace=true
+    automated: 
+      prune: true
+      selfHeal: true 
