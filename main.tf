@@ -14,10 +14,4 @@ resource "helm_release" "flask" {
   version    = "0.1.0"
   force_update = true
 
-  set = [
-    {
-      name  = "service.type"
-      value = "ClusterIP"
-    }
-  ]
 }
